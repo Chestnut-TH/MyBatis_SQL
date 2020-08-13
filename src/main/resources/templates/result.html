@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/table.css">
+<title>結果出力画面</title>
+</head>
+<body>
+	<table border="1">
+	
+		<tr>
+			<th>ID</th>
+			<th>職員名</th>
+			<th>性別</th>
+			<th>役職</th>
+		</tr>
+		  				<!-- ↓ControllerクラスのaddAttribute("ksk",list)の名前と同じにする。-->
+		<tr th:each="info:${ksk}">
+			<td th:text="${info.id}"></td>
+			<td th:text="${info.name}"></td>
+			<td th:text="${info.sex}"></td>
+			<td th:text="${info.position}"></td>
+		</tr>
+		
+
+	</table>
+						<!-- Controllerのアノテーションへ飛ぶ -->
+	<a href="search.html" th:href="@{index}">入力画面へ</a>
+</body>
+</html>
