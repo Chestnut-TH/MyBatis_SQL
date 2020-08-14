@@ -12,14 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.form.ShainInfoForm;
-import com.example.demo.mapper.ShainInsertMapper;
 import com.example.demo.mapper.ShainMapper;
 
 @Controller
 public class SqlController {
-	
-	@Autowired
-	ShainInsertMapper shainInsertMapper;
 	
 	/*c--- SELECT文のMapper ---c*/
 	@Autowired
@@ -74,12 +70,49 @@ public class SqlController {
 		String position = shainInfoForm.getPosition();
 		
 		
-		/* c--- 全検索と指定検索の切り替え ---c*/
-		List<ShainInfoForm> list = shainMapper.insert(id,name,sex,position);
-		model.addAttribute("ksk",list);
+		/* c--- 追加件数 ---c*/
+		shainMapper.insert(id,name,sex,position);
+		//model.addAttribute("ksk",result);
 
-		return "result.html";
+		return "success.html";
 	}
+	
+	@RequestMapping("/resultupdate")
+	public String resultupdate(@Validated ShainInfoForm shainInfoForm, BindingResult bindingResult, Model model) {
+		/*c- 入力チェック等でエラーがあればindex.htmlに戻す -c*/
+		if (bindingResult.hasErrors()) {
+			return "index.html";
+		}
+		
+		String id = shainInfoForm.getId();
+		String name = shainInfoForm.getName();
+		String sex = shainInfoForm.getSex();
+		String position = shainInfoForm.getPosition();
+		
+		
+		/* c--- 更新 ---c*/
+		shainMapper.update(id,name,sex,position);
+		//model.addAttribute("ksk",result);
+
+		return "success.html";
+	}
+	
+	@RequestMapping("/resultdelete")
+	public String resultdelete(@Validated ShainInfoForm shainInfoForm, BindingResult bindingResult, Model model) {
+		/*c- 入力チェック等でエラーがあればindex.htmlに戻す -c*/
+		if (bindingResult.hasErrors()) {
+			return "index.html";
+		}
+		
+		String id = shainInfoForm.getId();
+		/* c--- 削除 ---c*/
+		shainMapper.delete(id);
+		
+
+		return "success.html";
+	}
+	
+	
 	
 
 }

@@ -2,14 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>操作画面</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<div>
 		<h1>検索</h1>
-		<form method="POST" action="result.html" th:action="@{result}"
-			th:object="${shainInfoForm}">
+		<form method="POST" action="result.html" th:action="@{result}" th:object="${shainInfoForm}">
 			<p>
 				ID: <input type="search" name="id" placeholder="IDを入力してください。">
 			</p>
@@ -19,15 +18,16 @@
 			</p>
 			<p>
 				性別: 
-				<input type="radio" name="sex" value="male">男
-				<input type="radio" name="sex" value="female">女
+				<input type="radio" name="sex" value="男">男 
+				<input type="radio" name="sex" value="女">女
 			</p>
 			<p>
-				役職: <input type="radio" name="position" value="ceo">代表取締役 
-				<input type="radio" name="position" value="director">取締役
-				<input type="radio" name="position" value="leader">グループリーダー 
-				<input type="radio" name="position" value="subleader">サブリーダー
-				<input type="radio" name="position" value="normal">その他
+				役職: 
+				<input type="radio" name="position" value="代表取締役">代表取締役
+				<input type="radio" name="position" value="取締役">取締役
+				<input type="radio" name="position" value="グループリーダー">グループリーダー
+				<input type="radio" name="position" value="サブリーダー">サブリーダー 
+				<input type="radio" name="position" value="-">その他
 			</p>
 
 			検索ボタン： <input type="submit" value="検索">
@@ -37,8 +37,7 @@
 
 	<div>
 		<h1>追加</h1>
-		<form method="POST" th:action="@{resultinsert}"
-			th:object="${shainInfoForm}">
+		<form method="POST"action="success.html" th:action="@{resultinsert}" th:object="${shainInfoForm}">
 			<p>
 				ID: <input type="search" name="id" placeholder="IDを入力してください。">
 			</p>
@@ -46,22 +45,22 @@
 			<p>
 				職員名: <input type="search" name="name" placeholder="名前を入力してください。">
 			</p>
-			<p style="color: red;" th:errors="${shainInfoForm.id}" class="error">職員名を入力してください。</p>
+			<p style="color: red;" th:errors="${shainInfoForm.name}" class="error">職員名を入力してください。</p>
 			<p>
 				性別: 
 				<input type="radio" name="sex" value="男">男 
 				<input type="radio" name="sex" value="女">女
 			</p>
-			<p style="color: red;" th:errors="${shainInfoForm.id}" class="error">性別を選択してください。</p>
+			<p style="color: red;" th:errors="${shainInfoForm.sex}" class="error">性別を選択してください。</p>
 			<p>
 				役職: 
-				<input type="radio" name="position" value="ceo">代表取締役
-				<input type="radio" name="position" value="director">取締役 
-				<input type="radio" name="position" value="leader">グループリーダー
-				<input type="radio" name="position" value="subleader">サブリーダー
-				<input type="radio" name="position" value="normal">その他
+				<input type="radio" name="position" value="代表取締役">代表取締役
+				<input type="radio" name="position" value="取締役">取締役
+				<input type="radio" name="position" value="グループリーダー">グループリーダー
+				<input type="radio" name="position" value="サブリーダー">サブリーダー 
+				<input type="radio" name="position" value="-">その他
 			</p>
-			<p style="color: red;" th:errors="${shainInfoForm.id}" class="error">役職を入力してください。</p>
+			<p style="color: red;" th:errors="${shainInfoForm.position}" class="error">役職を入力してください。</p>
 
 			追加ボタン： <input type="submit" value="追加">
 		</form>
@@ -69,49 +68,33 @@
 
 	<div>
 		<h1>更新</h1>
-		<form method="POST" action="result.html" th:action="@{result}"
-			th:object="${shainInfoForm}">
+		<form method="POST"action="success.html" th:action="@{resultupdate}" th:object="${shainInfoForm}">
 			<!---------------------------------------IDここから----------------------------------------------------->
-			<p>---------------------更新ID---------------------</p>
+			<p>---------------------更新対象職員ID---------------------</p>
 			<p>
-				更新前ID: <input type="search" name="id" placeholder="IDを入力してください。">
+				更新したいID: <input type="search" name="id" placeholder="IDを入力してください。">
 			</p>
-			<p style="color: red;" th:errors="${shainInfoForm.id}" class="error">更新前のIDを入力してください。</p>
-			<p>
-				更新後ID: <input type="search" name="id" placeholder="IDを入力してください。">
-			</p>
-			<p style="color: red;" th:errors="${shainInfoForm.id}" class="error">更新後のIDを入力してください。</p>
-			<p>---------------------更新ID---------------------</p>
+			<p style="color: red;" th:errors="${shainInfoForm.id}" class="error">変更する対象の職員のIDを入力してください。</p>
+			<p>---------------------更新対象職員ID---------------------</p>
 			<!----------------------------------------IDここまで----------------------------------------------------->
 
 			<!----------------------------------------Nameここから----------------------------------------------------->
 			<p>---------------------更新職員名---------------------</p>
 			<p>
-				更新前職員名: 
-				<input type="search" name="beforename"placeholder="名前を入力してください。">
+				更新職員名: <input type="search" name="name"placeholder="名前を入力してください。">
 			</p>
-			<p style="color: red;" th:errors="${shainInfoForm.id}" class="error">更新前の名前を入力してください。</p>
-			<p>
-				更新後職員名: <input type="search" name="aftername"placeholder="名前を入力してください。">
-			</p>
-			<p style="color: red;" th:errors="${shainInfoForm.id}" class="error">更新後の名前を入力してください。</p>
+			<p style="color: red;" th:errors="${shainInfoForm.name}" class="error">変更する名前を入力してください。</p>
 			<p>---------------------更新職員名---------------------</p>
 			<!----------------------------------------Nameここまで----------------------------------------------------->
 			
 			<!----------------------------------------sexここから----------------------------------------------------->
 			<p>---------------------更新性別---------------------</p>
 			<p>
-				更新前性別: 
-				<input type="radio" name="sex" value="male">男 
-				<input type="radio" name="sex" value="female">女
+				更新性別: 
+				<input type="radio" name="sex" value="男 ">男 
+				<input type="radio" name="sex" value="女">女
 			</p>
-			<p style="color: red;" th:errors="${shainInfoForm.sex}" class="error">更新前の性別を選択してください。</p>
-			<p>
-				更新後性別: 
-				<input type="radio" name="sex" value="male">男 
-				<input type="radio" name="sex" value="female">女
-			</p>
-			<p style="color: red;" th:errors="${shainInfoForm.sex}" class="error">更新後の性別を選択してください。</p>
+			<p style="color: red;" th:errors="${shainInfoForm.sex}" class="error">変更する性別を選択してください。</p>
 			<p>---------------------更新性別---------------------</p>
 			<!----------------------------------------sexここまで----------------------------------------------------->
 			
@@ -119,22 +102,13 @@
 			<p>---------------------更新役職---------------------</p>
 			<p>
 				更新前役職: 
-				<input type="radio" name="position" value="ceo">代表取締役
-				<input type="radio" name="position" value="director">取締役
-				<input type="radio" name="position" value="leader">グループリーダー
-				<input type="radio" name="position" value="subleader">サブリーダー 
-				<input type="radio" name="position" value="normal">その他
+				<input type="radio" name="position" value="代表取締役">代表取締役
+				<input type="radio" name="position" value="取締役">取締役
+				<input type="radio" name="position" value="グループリーダー">グループリーダー
+				<input type="radio" name="position" value="サブリーダー">サブリーダー 
+				<input type="radio" name="position" value="-">その他
 			</p>
-			<p style="color: red;" th:errors="${shainInfoForm.id}" class="error">更新後の役職を選択してください。</p>
-			<p>
-				更新後役職: 
-				<input type="radio" name="position" value="ceo">代表取締役
-				<input type="radio" name="position" value="director">取締役
-				<input type="radio" name="position" value="leader">グループリーダー
-				<input type="radio" name="position" value="subleader">サブリーダー 
-				<input type="radio" name="position" value="normal">その他
-			</p>
-			<p style="color: red;" th:errors="${shainInfoForm.id}" class="error">更新後の役職を選択してください。</p>
+			<p style="color: red;" th:errors="${shainInfoForm.position}" class="error">変更する役職を選択してください。</p>
 			<p>---------------------更新役職---------------------</p>
 			<!----------------------------------------positionここまで----------------------------------------------------->
 
@@ -144,8 +118,7 @@
 
 	<div>
 		<h1>削除</h1>
-		<form method="POST" action="result.html" th:action="@{result}"
-			th:object="${shainInfoForm}">
+		<form method="POST"action="success.html" th:action="@{resultdelete}" th:object="${shainInfoForm}">
 			<p>
 				ID: <input type="search" name="id" placeholder="IDを入力してください。">
 			</p>

@@ -15,10 +15,16 @@ public interface ShainMapper {
 	List<ShainInfoForm> select(@Param("id") String id, @Param("name") String name, @Param("sex") String sex,
 			@Param("position") String position);
 	/*c--- 追加の場合 ---c*/
-	List<ShainInfoForm> insert(@Param("id") String id, @Param("name") String name, @Param("sex") String sex,
+//	List<ShainInfoForm> insert(@Param("id") String id, @Param("name") String name, @Param("sex") String sex,
+//			@Param("position") String position);
+	
+	int insert(@Param("id") String id, @Param("name") String name, @Param("sex") String sex,
 			@Param("position") String position);
 	
 	/*c--- 更新の場合 ---c*/
+	int update(@Param("id") String id, @Param("name") String name, @Param("sex") String sex,
+			@Param("position") String position);
+	int delete(@Param("id") String id);
 	
 	/*c--- 検索削除の場合 ---c*/
 }
